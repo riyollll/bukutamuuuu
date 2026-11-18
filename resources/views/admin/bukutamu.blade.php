@@ -18,6 +18,10 @@
         </a>
     </div>
 
+    @if (session('success'))
+        <div class="alert alert-success" role="status">{{ session('success') }}</div>
+    @endif
+
     <div class="table-responsive">
         <table class="table align-middle mb-0" id="guestsTable" data-searchable-table>
             <thead>
@@ -26,33 +30,37 @@
                     <th scope="col">Alamat</th>
                     <th scope="col">Keperluan</th>
                     <th scope="col">Pihak yang dituju</th>
+                    <th scope="col">Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td class="fw-semibold">Ahmad Fauzi</td>
-                    <td>Jl. Merdeka No. 12, Blitar</td>
-                    <td>Kunjungan kerja</td>
-                    <td>Kepala Bagian Umum</td>
-                </tr>
-                <tr>
-                    <td class="fw-semibold">Siti Rahmawati</td>
-                    <td>Jl. Panglima Sudirman No. 8, Wlingi</td>
-                    <td>Konsultasi layanan</td>
-                    <td>Ibu Rina</td>
-                </tr>
-                <tr>
-                    <td class="fw-semibold">Budi Santoso</td>
-                    <td>Jl. Diponegoro No. 21, Blitar</td>
-                    <td>Pengajuan surat</td>
-                    <td>Bapak Hasan</td>
-                </tr>
-                <tr>
-                    <td class="fw-semibold">Dewi Anggraini</td>
-                    <td>Jl. Raya Wlingi No. 15, Wlingi</td>
-                    <td>Keperluan administrasi</td>
-                    <td>Ibu Rina</td>
-                </tr>
+                @forelse ($pengunjungs as $pengunjung)
+                    <tr>
+                        <td class="fw-semibold">{{ $pengunjung->nama }}</td>
+                        <td>{{ $pengunjung->alamat }}</td>
+                        <td>{{ $pengunjung->keperluan }}</td>
+                        <td>{{ $pengunjung->pihak_yang_dituju }}</td>
+                        <td class="text-nowrap">
+                            <a class="btn btn-light btn-sm"
+                                href="{{ route('tamu.edit', $pengunjung) }}">
+                                <i class="bi bi-pencil-square me-1" aria-hidden="true"></i>Edit
+                            </a>
+                            <form action="{{ route('tamu.destroy', $pengunjung) }}" method="POST"
+                                class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-light btn-sm" type="submit"
+                                    onclick="return confirm('Hapus data tamu ini?')">
+                                    <i class="bi bi-trash me-1" aria-hidden="true"></i>Hapus
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="5" class="text-center text-muted py-4">Belum ada data tamu.</td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
     </div>

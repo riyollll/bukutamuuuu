@@ -60,7 +60,7 @@
                             </div>
                         @endif
 
-                        <form action="" method="POST">
+                        <form action="{{ route('tamu.store') }}" method="POST">
                             @csrf
 
                             <div class="row g-3">
@@ -99,6 +99,7 @@
                                         id="alamat"
                                         name="alamat"
                                         rows="3"
+                                        maxlength="1000"
                                         autocomplete="street-address"
                                         required>{{ old('alamat') }}</textarea>
                                     @error('alamat')

@@ -33,7 +33,7 @@
                     <span class="nav-icon"><i class="bi bi-speedometer2" aria-hidden="true"></i></span>
                     <span class="nav-text">Dashbord</span>
                 </a>
-                <a class="nav-link" href="{{ route('admin.bukutamu') }}" aria-current="page">
+                <a class="nav-link" href="{{ route('tamu.index') }}" aria-current="page">
                     <span class="nav-icon"><i class="bi bi-book" aria-hidden="true"></i></span>
                     <span class="nav-text">Buku Tamu</span>
                 </a>

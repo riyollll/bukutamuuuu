@@ -12,7 +12,7 @@
                     <i class="bi bi-people" aria-hidden="true"></i>
                 </span>
             </div>
-            <div class="metric-value">4</div>
+            <div class="metric-value">{{ $totalPengunjung }}</div>
             <div class="metric-meta">
                 <span>Total seluruh kunjungan</span>
             </div>
@@ -27,7 +27,7 @@
                     <i class="bi bi-calendar-check" aria-hidden="true"></i>
                 </span>
             </div>
-            <div class="metric-value">4</div>
+            <div class="metric-value">{{ $pengunjungHariIni }}</div>
             <div class="metric-meta">
                 <span>Jumlah kunjungan hari ini</span>
             </div>
@@ -63,16 +63,11 @@
             </div>
         </article>
     </div>
-
 </section>
 
-
 <section class="row g-3 mt-3 align-items-stretch">
-
-    {{-- KUNJUNGAN HARIAN --}}
     <div class="col-12 col-xl-6">
         <div class="panel h-100">
-
             <div class="panel-header">
                 <div>
                     <h2 class="h5 mb-1 section-title">
@@ -90,45 +85,18 @@
             </div>
 
             <div class="chart-bars" aria-label="Grafik kunjungan harian">
-                <div class="chart-column bar-42">
-                    <span></span>
-                    <small>Jan</small>
-                </div>
-
-                <div class="chart-column bar-58">
-                    <span></span>
-                    <small>Feb</small>
-                </div>
-
-                <div class="chart-column bar-51">
-                    <span></span>
-                    <small>Mar</small>
-                </div>
-
-                <div class="chart-column bar-72">
-                    <span></span>
-                    <small>Apr</small>
-                </div>
-
-                <div class="chart-column bar-66">
-                    <span></span>
-                    <small>Mei</small>
-                </div>
-
-                <div class="chart-column bar-83">
-                    <span></span>
-                    <small>Jun</small>
-                </div>
+                <div class="chart-column bar-42"><span></span><small>Jan</small></div>
+                <div class="chart-column bar-58"><span></span><small>Feb</small></div>
+                <div class="chart-column bar-51"><span></span><small>Mar</small></div>
+                <div class="chart-column bar-72"><span></span><small>Apr</small></div>
+                <div class="chart-column bar-66"><span></span><small>Mei</small></div>
+                <div class="chart-column bar-83"><span></span><small>Jun</small></div>
             </div>
-
         </div>
     </div>
 
-
-    {{-- TAMU TERBARU --}}
     <div class="col-12 col-xl-6">
         <div class="panel h-100">
-
             <div class="panel-header">
                 <div>
                     <h2 class="h5 mb-1 section-title">
@@ -140,17 +108,13 @@
                     </p>
                 </div>
 
-                <a class="btn btn-outline-secondary btn-sm"
-                   href="{{ route('admin.bukutamu') }}">
+                <a class="btn btn-outline-secondary btn-sm" href="{{ route('tamu.index') }}">
                     Lihat Semua
                 </a>
             </div>
 
-            <div class="table-responsive dashboard-user-table"
-                 aria-label="Daftar tamu terbaru">
-
+            <div class="table-responsive dashboard-user-table" aria-label="Daftar tamu terbaru">
                 <table class="table align-middle mb-0">
-
                     <thead>
                         <tr>
                             <th scope="col">Nama lengkap</th>
@@ -159,53 +123,24 @@
                             <th scope="col">Pihak yang dituju</th>
                         </tr>
                     </thead>
-
                     <tbody>
-
-                        <tr>
-                            <td>
-                                <p class="fw-semibold mb-0">Ahmad Fauzi</p>
-                            </td>
-                            <td>Jl. Merdeka No. 12, Blitar</td>
-                            <td>Kunjungan kerja</td>
-                            <td>Kepala Bagian Umum</td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <p class="fw-semibold mb-0">Siti Rahmawati</p>
-                            </td>
-                            <td>Jl. Panglima Sudirman No. 8, Wlingi</td>
-                            <td>Konsultasi layanan</td>
-                            <td>Ibu Rina</td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <p class="fw-semibold mb-0">Budi Santoso</p>
-                            </td>
-                            <td>Jl. Diponegoro No. 21, Blitar</td>
-                            <td>Pengajuan surat</td>
-                            <td>Bapak Hasan</td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <p class="fw-semibold mb-0">Dewi Anggraini</p>
-                            </td>
-                            <td>Jl. Raya Wlingi No. 15, Wlingi</td>
-                            <td>Keperluan administrasi</td>
-                            <td>Ibu Rina</td>
-                        </tr>
-
+                        @forelse ($pengunjungTerbaru as $pengunjung)
+                            <tr>
+                                <td class="fw-semibold">{{ $pengunjung->nama }}</td>
+                                <td>{{ $pengunjung->alamat }}</td>
+                                <td>{{ $pengunjung->keperluan }}</td>
+                                <td>{{ $pengunjung->pihak_yang_dituju }}</td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="4" class="text-center text-muted py-4">Belum ada data tamu.</td>
+                            </tr>
+                        @endforelse
                     </tbody>
-
                 </table>
-
             </div>
         </div>
     </div>
-
 </section>
 
 @endsection
