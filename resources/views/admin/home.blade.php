@@ -42,7 +42,7 @@
                     <i class="bi bi-clock-history" aria-hidden="true"></i>
                 </span>
             </div>
-            <div class="metric-value">0</div>
+            <div class="metric-value">{{ $tamuMenunggu }}</div>
             <div class="metric-meta">
                 <span>Belum melakukan kunjungan</span>
             </div>
@@ -57,7 +57,7 @@
                     <i class="bi bi-person-check" aria-hidden="true"></i>
                 </span>
             </div>
-            <div class="metric-value">4</div>
+            <div class="metric-value">{{ $tamuSudahMasuk }}</div>
             <div class="metric-meta">
                 <span>Tamu telah melakukan kunjungan</span>
             </div>
