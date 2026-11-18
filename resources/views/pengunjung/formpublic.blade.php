@@ -69,6 +69,7 @@
                                         Nama lengkap <span class="text-danger">*</span>
                                     </label>
                                     <input
+                                    placeholder="contoh: Budi Santoso"
                                         class="form-control @error('nama') is-invalid @enderror"
                                         id="nama"
                                         name="nama"
@@ -94,6 +95,7 @@
                                     </label>
                                     <textarea
                                         class="form-control @error('alamat') is-invalid @enderror"
+                                        placeholder="contoh: Jl. Merdeka No. 123, Jakarta"
                                         id="alamat"
                                         name="alamat"
                                         rows="3"
@@ -109,6 +111,7 @@
                                     </label>
                                     <input
                                         class="form-control @error('keperluan') is-invalid @enderror"
+                                        placeholder="contoh: Menghadiri rapat koordinasi"
                                         id="keperluan"
                                         name="keperluan"
                                         type="text"
@@ -125,6 +128,7 @@
                                     </label>
                                     <input
                                         class="form-control @error('pihak_yang_dituju') is-invalid @enderror"
+                                        placeholder="contoh: Bapak/Ibu Kepala Bagian"
                                         id="pihak_yang_dituju"
                                         name="pihak_yang_dituju"
                                         type="text"
